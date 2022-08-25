@@ -1,0 +1,73 @@
+@import '/src/styles/variables.scss';
+@import 'bootstrap';
+
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.all_display {
+    height: 100vh;
+    width: 100%;
+}
+
+i {
+    cursor: pointer;
+}
+
+.pacman {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: $yellow;
+    position: relative;
+
+    .mouth {
+        background: $bg_blue; // deve essere il colore del background
+        position: absolute;
+        width: 101%;
+        height: 101%;
+        clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
+        animation-duration: 350ms;
+        animation-iteration-count: infinite;
+        animation-name: eat;
+
+        @keyframes eat {
+            0% {
+            clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
+            }
+            25% {
+            clip-path: polygon(100% 60%, 44% 48%, 100% 40%);
+            }
+            
+            50% {
+            clip-path: polygon(100% 50%, 44% 48%, 100% 50%);
+            }
+            
+            75% {
+            clip-path: polygon(100% 59%, 44% 48%, 100% 35%);
+            }
+            
+            100% {
+            clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
+            }
+        
+        }
+    }
+}
+
+.vulnerable_ghost {
+    width: 60px;
+    height: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url('/src/assets/vulnerable_ghost.svg');
+}    
+
+.ghost {
+    width: 60px;
+    height: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url('/src/assets/ghost-red.svg');
+}  
