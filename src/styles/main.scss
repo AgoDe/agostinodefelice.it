@@ -4,23 +4,31 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+
+// ----- UTILITY ---------
+#app {
+    background-color: $bg_blue;
+}
 .all_display {
     height: 100vh;
     width: 100%;
-    background-color: $bg_blue;
     color: $yellow;
     font-family: $start;
+    border: 10px red solid;
 }
 
+h1, h2, h3 {
+    text-transform: capitalize;
+}
 
 .pacman {
     width: 60px;
     height: 60px;
     border-radius: 50%;
     background: $yellow;
-    position: relative;
+    position: absolute;
 
-    .mouth {
+    .mouth_dx {
         background: $bg_blue; // deve essere il colore del background
         position: absolute;
         width: 101%;
@@ -28,9 +36,17 @@
         clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
         animation-duration: 350ms;
         animation-iteration-count: infinite;
-        animation-name: eat;
-
-        
+        animation-name: eat_dx; 
+    }
+    .mouth_sx {
+        background: $bg_blue; // deve essere il colore del background
+        position: absolute;
+        width: 101%;
+        height: 101%;
+        clip-path: polygon(100% 21%, 44% 48%, 100% 74%);
+        animation-duration: 350ms;
+        animation-iteration-count: infinite;
+        animation-name: eat_sx; 
     }
 }
 
@@ -49,12 +65,21 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    background-image: url('/src/assets/ghost-red.svg');
+    background-image: url('/src/assets/ghost-red-right.svg');
 }  
 
+.chevron_box {
+    position: relative;
+}
 .icon-pixel-down {
     position: absolute;
     font-size: 60px;
+    animation-name: chevron_down;
+    animation-duration: 850ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(4, end);
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
 
@@ -64,7 +89,7 @@
 /* ----- ANIMAZIONI -------- */
 
 // bocca di pacman
-@keyframes eat {
+@keyframes eat_dx {
     0% {
     clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
     }
@@ -84,13 +109,32 @@
     clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
     }
 }
+@keyframes eat_sx {
+    0% {
+    clip-path: polygon(0% 74%, 56% 48%, 0% 21%);
+    }
+    
+    25% {
+        clip-path: polygon(0% 59%, 56% 48%, 0% 35%);
+    }
+    50% {
+        clip-path: polygon(0% 50%, 56% 48%, 0% 50%);
+    }
+    75% {
+        clip-path: polygon(0% 60%, 56% 48%, 0% 40%);
+    }
+    100% {
+    clip-path: polygon(0% 21%, 56% 48%, 0% 74%);
+    }
+    
+}
 
 // freccia verso il basso
 @keyframes chevron_down {
     0% {
-        top: 50px;
+        top: 0px;
     }
     100% {
-        top: 100px;
+        top: 50px;
     }
 }
